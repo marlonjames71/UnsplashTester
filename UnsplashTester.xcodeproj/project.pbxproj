@@ -11,12 +11,14 @@
 		37EA834F24C4043B0071E537 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA834E24C4043B0071E537 /* Tests_macOS.swift */; };
 		37EA835124C4043B0071E537 /* UnsplashTesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832824C4043B0071E537 /* UnsplashTesterApp.swift */; };
 		37EA835224C4043B0071E537 /* UnsplashTesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832824C4043B0071E537 /* UnsplashTesterApp.swift */; };
-		37EA835324C4043B0071E537 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* ContentView.swift */; };
-		37EA835424C4043B0071E537 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* ContentView.swift */; };
+		37EA835324C4043B0071E537 /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* CoverPhoto.swift */; };
+		37EA835424C4043B0071E537 /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* CoverPhoto.swift */; };
 		37EA835524C4043B0071E537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EA832A24C4043B0071E537 /* Assets.xcassets */; };
 		37EA835624C4043B0071E537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EA832A24C4043B0071E537 /* Assets.xcassets */; };
 		37EA836724C4057C0071E537 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 37EA836624C4057C0071E537 /* SDWebImageSwiftUI */; };
 		37EA836B24C408C10071E537 /* UnsplashAPIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA836A24C408C10071E537 /* UnsplashAPIKeys.swift */; };
+		37EA836E24C410990071E537 /* UnsplashAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA836D24C410990071E537 /* UnsplashAPI.swift */; };
+		37EA837124C42A5D0071E537 /* UnsplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA837024C42A5D0071E537 /* UnsplashModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		37EA832824C4043B0071E537 /* UnsplashTesterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashTesterApp.swift; sourceTree = "<group>"; };
-		37EA832924C4043B0071E537 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		37EA832924C4043B0071E537 /* CoverPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
 		37EA832A24C4043B0071E537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37EA832F24C4043B0071E537 /* UnsplashTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EA833224C4043B0071E537 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +54,8 @@
 		37EA834E24C4043B0071E537 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		37EA835024C4043B0071E537 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37EA836A24C408C10071E537 /* UnsplashAPIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIKeys.swift; sourceTree = "<group>"; };
+		37EA836D24C410990071E537 /* UnsplashAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPI.swift; sourceTree = "<group>"; };
+		37EA837024C42A5D0071E537 /* UnsplashModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +106,11 @@
 		37EA832724C4043B0071E537 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				37EA832924C4043B0071E537 /* CoverPhoto.swift */,
+				37EA836F24C42A480071E537 /* Model */,
+				37EA836C24C410610071E537 /* Service */,
 				37EA836924C408A40071E537 /* PrivateKeys */,
 				37EA832824C4043B0071E537 /* UnsplashTesterApp.swift */,
-				37EA832924C4043B0071E537 /* ContentView.swift */,
 				37EA832A24C4043B0071E537 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -162,6 +168,22 @@
 				37EA836A24C408C10071E537 /* UnsplashAPIKeys.swift */,
 			);
 			path = PrivateKeys;
+			sourceTree = "<group>";
+		};
+		37EA836C24C410610071E537 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				37EA836D24C410990071E537 /* UnsplashAPI.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		37EA836F24C42A480071E537 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37EA837024C42A5D0071E537 /* UnsplashModels.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,8 +349,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37EA835324C4043B0071E537 /* ContentView.swift in Sources */,
+				37EA836E24C410990071E537 /* UnsplashAPI.swift in Sources */,
+				37EA835324C4043B0071E537 /* CoverPhoto.swift in Sources */,
 				37EA836B24C408C10071E537 /* UnsplashAPIKeys.swift in Sources */,
+				37EA837124C42A5D0071E537 /* UnsplashModels.swift in Sources */,
 				37EA835124C4043B0071E537 /* UnsplashTesterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,7 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37EA835424C4043B0071E537 /* ContentView.swift in Sources */,
+				37EA835424C4043B0071E537 /* CoverPhoto.swift in Sources */,
 				37EA835224C4043B0071E537 /* UnsplashTesterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
