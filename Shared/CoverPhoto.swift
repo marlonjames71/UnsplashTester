@@ -25,7 +25,7 @@ struct CoverPhotoView: View {
 							.aspectRatio(contentMode: .fill)
 							.frame(height: proxy.size.height / 3.5)
 							.frame(maxWidth: 350)
-							.background(Color.blue)
+							.background(Color.gray.opacity(0.2))
 							.cornerRadius(16)
 
 						HStack {
@@ -44,16 +44,14 @@ struct CoverPhotoView: View {
 								}
 							Spacer()
 
-							if showCoverPhoto {
-								Button(action: {
-									unsplashAPI.fetch(.random)
-								}, label: {
-									Image(systemName: "arrow.clockwise.circle.fill")
-										.font(.title3)
-										.foregroundColor(.gray)
-								})
-								.offset(x: -10, y: 85)
-							}
+							Button(action: {
+								unsplashAPI.fetch(.random)
+							}, label: {
+								Image(systemName: "arrow.clockwise.circle.fill")
+									.font(.title3)
+									.foregroundColor(.white).opacity(0.7)
+							})
+							.offset(x: -8, y: 85)
 						}
 					}
 				}
@@ -64,7 +62,7 @@ struct CoverPhotoView: View {
 						Spacer()
 						Image(systemName: showCoverPhoto ? "checkmark.circle.fill" : "circle")
 							.font(.title2)
-							.foregroundColor(Color(.systemIndigo))
+							.foregroundColor(.secondary)
 							.onTapGesture { showCoverPhoto.toggle() }
 					}
 					.padding(.horizontal)
@@ -72,7 +70,7 @@ struct CoverPhotoView: View {
 				Spacer()
 			}
 			.padding(.horizontal)
-			.animation(.default)
+			.animation(.spring())
 		}
 		.accentColor(.blue)
 		.onAppear {
