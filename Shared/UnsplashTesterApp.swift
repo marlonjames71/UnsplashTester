@@ -11,7 +11,7 @@ import SwiftUI
 struct UnsplashTesterApp: App {
     var body: some Scene {
         WindowGroup {
-            CoverPhotoView()
+			CoverPhotoMain(image: UIImage())
         }
     }
 }

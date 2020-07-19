@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3753D05D24C4ED3300119472 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753D05C24C4ED3300119472 /* ImagePicker.swift */; };
+		3753D05E24C4ED3300119472 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753D05C24C4ED3300119472 /* ImagePicker.swift */; };
+		3753D06124C4F14800119472 /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753D06024C4F14800119472 /* CoverPhoto.swift */; };
+		3753D06224C4F14800119472 /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753D06024C4F14800119472 /* CoverPhoto.swift */; };
+		3753D06424C4F18A00119472 /* CoverPhotoControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753D06324C4F18A00119472 /* CoverPhotoControlsView.swift */; };
+		3753D06524C4F18B00119472 /* CoverPhotoControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753D06324C4F18A00119472 /* CoverPhotoControlsView.swift */; };
 		37EA834424C4043B0071E537 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA834324C4043B0071E537 /* Tests_iOS.swift */; };
 		37EA834F24C4043B0071E537 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA834E24C4043B0071E537 /* Tests_macOS.swift */; };
 		37EA835124C4043B0071E537 /* UnsplashTesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832824C4043B0071E537 /* UnsplashTesterApp.swift */; };
 		37EA835224C4043B0071E537 /* UnsplashTesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832824C4043B0071E537 /* UnsplashTesterApp.swift */; };
-		37EA835324C4043B0071E537 /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* CoverPhoto.swift */; };
-		37EA835424C4043B0071E537 /* CoverPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* CoverPhoto.swift */; };
+		37EA835324C4043B0071E537 /* CoverPhotoMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* CoverPhotoMain.swift */; };
+		37EA835424C4043B0071E537 /* CoverPhotoMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA832924C4043B0071E537 /* CoverPhotoMain.swift */; };
 		37EA835524C4043B0071E537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EA832A24C4043B0071E537 /* Assets.xcassets */; };
 		37EA835624C4043B0071E537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37EA832A24C4043B0071E537 /* Assets.xcassets */; };
 		37EA836724C4057C0071E537 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 37EA836624C4057C0071E537 /* SDWebImageSwiftUI */; };
@@ -39,8 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3753D05C24C4ED3300119472 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		3753D06024C4F14800119472 /* CoverPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
+		3753D06324C4F18A00119472 /* CoverPhotoControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPhotoControlsView.swift; sourceTree = "<group>"; };
 		37EA832824C4043B0071E537 /* UnsplashTesterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashTesterApp.swift; sourceTree = "<group>"; };
-		37EA832924C4043B0071E537 /* CoverPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPhoto.swift; sourceTree = "<group>"; };
+		37EA832924C4043B0071E537 /* CoverPhotoMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPhotoMain.swift; sourceTree = "<group>"; };
 		37EA832A24C4043B0071E537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37EA832F24C4043B0071E537 /* UnsplashTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37EA833224C4043B0071E537 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +100,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3753D05F24C4F12700119472 /* CoverPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				3753D06024C4F14800119472 /* CoverPhoto.swift */,
+				3753D06324C4F18A00119472 /* CoverPhotoControlsView.swift */,
+			);
+			path = CoverPhoto;
+			sourceTree = "<group>";
+		};
+		3753D06624C4F3DE00119472 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				3753D05C24C4ED3300119472 /* ImagePicker.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
 		37EA832224C4043A0071E537 = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +132,9 @@
 		37EA832724C4043B0071E537 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				37EA832924C4043B0071E537 /* CoverPhoto.swift */,
+				37EA832924C4043B0071E537 /* CoverPhotoMain.swift */,
+				3753D05F24C4F12700119472 /* CoverPhoto */,
+				3753D06624C4F3DE00119472 /* ImagePicker */,
 				37EA836F24C42A480071E537 /* Model */,
 				37EA836C24C410610071E537 /* Service */,
 				37EA836924C408A40071E537 /* PrivateKeys */,
@@ -350,10 +378,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				37EA836E24C410990071E537 /* UnsplashAPI.swift in Sources */,
-				37EA835324C4043B0071E537 /* CoverPhoto.swift in Sources */,
+				37EA835324C4043B0071E537 /* CoverPhotoMain.swift in Sources */,
+				3753D06124C4F14800119472 /* CoverPhoto.swift in Sources */,
 				37EA836B24C408C10071E537 /* UnsplashAPIKeys.swift in Sources */,
+				3753D05D24C4ED3300119472 /* ImagePicker.swift in Sources */,
 				37EA837124C42A5D0071E537 /* UnsplashModels.swift in Sources */,
 				37EA835124C4043B0071E537 /* UnsplashTesterApp.swift in Sources */,
+				3753D06424C4F18A00119472 /* CoverPhotoControlsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,8 +392,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37EA835424C4043B0071E537 /* CoverPhoto.swift in Sources */,
+				3753D05E24C4ED3300119472 /* ImagePicker.swift in Sources */,
+				37EA835424C4043B0071E537 /* CoverPhotoMain.swift in Sources */,
+				3753D06524C4F18B00119472 /* CoverPhotoControlsView.swift in Sources */,
 				37EA835224C4043B0071E537 /* UnsplashTesterApp.swift in Sources */,
+				3753D06224C4F14800119472 /* CoverPhoto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
