@@ -35,7 +35,6 @@ class UnsplashAPIService: ObservableObject {
 
 	// MARK: - Functions
 	func fetch(_ path: Path) {
-		cancel()
 		do {
 			let url = try urlBuilder(path: path)
 			cancellationToken = URLSession.shared.dataTaskPublisher(for: url)
@@ -74,13 +73,14 @@ class UnsplashAPIService: ObservableObject {
 				URLQueryItem(name: "featured", value: nil)
 			]
 		case .search(query: let query):
-			url.appendPathComponent("search")
+			url.appendPathComponent("random")
 
 			queryItems = [
 				URLQueryItem(name: "client_id", value: .accessKey),
 				URLQueryItem(name: "query", value: query),
 				URLQueryItem(name: "orientation", value: "landscape"),
-				URLQueryItem(name: "count", value: "30")
+				URLQueryItem(name: "featured", value: nil)
+//				URLQueryItem(name: "count", value: "30")
 			]
 		}
 
