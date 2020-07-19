@@ -198,4 +198,4 @@ Dependencies/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,swift,xcode,macos,carthage,cocoapods,objective-c
-PrivateKeys/UnsplashAPIKeys.swift
+Shared/PrivateKeys/UnsplashAPIKeys.swift
