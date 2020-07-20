@@ -58,7 +58,7 @@ struct CoverPhoto: View {
 							.padding(.all, 5)
 							.background(Color.black.opacity(0.4))
 							.cornerRadius(6)
-							.offset(x: 12, y: 95)
+							.offset(x: 12, y: 90)
 					}
 
 					Spacer()
@@ -75,17 +75,18 @@ struct CoverPhoto: View {
 							.font(.title3)
 							.foregroundColor(.white).opacity(0.7)
 					})
-					.offset(x: -12, y: 95)
+					.offset(x: -12, y: 90)
 				}
 			}
 
-			CoverPhotoControlsView(api: api,
-								   keyword: $keyword,
-								   selectedOption: $selectedOption,
-								   showCoverPhoto: $showCoverPhoto,
-								   image: $image
+			CoverPhotoControlsView(
+				api: api,
+				keyword: $keyword,
+				selectedOption: $selectedOption,
+				showCoverPhoto: $showCoverPhoto,
+				image: $image
 			)
-				.frame(height: 120)
+			.frame(height: 120)
 		}
 		.background(Color.gray.opacity(0.15))
 		.clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
