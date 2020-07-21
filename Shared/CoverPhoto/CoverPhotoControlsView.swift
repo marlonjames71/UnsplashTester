@@ -98,3 +98,12 @@ struct SourceOptionsSelector: View {
 		}
 	}
 }
+
+struct CoverPhotoControlsView_Previews: PreviewProvider {
+	static var previews: some View {
+		Group {
+			CoverPhotoControlsView(api: UnsplashAPIService(), keyword: .constant(""), selectedOption: .constant(0), showCoverPhoto: .constant(true), image: .constant(UIImage(systemName: "paperplane")!))
+			SourceOptionsSelector(selectedOption: .constant(0))
+		}
+	}
+}

@@ -51,3 +51,9 @@ class ImagePickerCoordinator: NSObject, PHPickerViewControllerDelegate {
 		}
 	}
 }
+
+struct ImagePicker_Previews: PreviewProvider {
+	static var previews: some View {
+		ImagePicker(image: .constant(UIImage()), showingPicker: .constant(true))
+	}
+}

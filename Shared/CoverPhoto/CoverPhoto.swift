@@ -92,3 +92,11 @@ struct CoverPhoto: View {
 		.clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
 	}
 }
+
+struct CoverPhoto_Previews: PreviewProvider {
+	static var previews: some View {
+		GeometryReader(content: { geometry in
+			CoverPhoto(url: nil, proxy: geometry, api: UnsplashAPIService(), keyword: .constant("Hiking"), selectedOption: .constant(0), showCoverPhoto: .constant(true), image: .constant(UIImage()))
+		})
+	}
+}
