@@ -5,6 +5,7 @@
 //  Created by Marlon Raskin on 7/19/20.
 //
 
+
 import SwiftUI
 
 struct CoverPhotoControlsView: View {
@@ -14,10 +15,10 @@ struct CoverPhotoControlsView: View {
 	@Binding var keyword: String
 	@Binding var selectedOption: Int
 	@Binding var showCoverPhoto: Bool
-	@Binding var image: UIImage
+	@Binding var image: UIImage?
 
 	@State var showPicker: Bool = false
-	@State var isEditing: Bool = false
+	@Binding var isEditing: Bool
 
 	var body: some View {
 		VStack(spacing: 16) {
@@ -27,10 +28,20 @@ struct CoverPhotoControlsView: View {
 					.frame(height: 45, alignment: .center)
 
 				if selectedOption == 0 {
+					HStack {
+						Text("Previously Uploaded")
+							.font(.caption)
+						Image(systemName: "checkmark.icloud.fill")
+							.foregroundColor(.green)
+							.font(.caption)
+					}
+				}
+				else if selectedOption == 1 {
 					HStack(spacing: 3) {
-						TextField("Outdoors, eg.",
-								  text: $keyword) { editing in
-								isEditing = editing
+						if isEditing {
+							TextField("Outdoors, eg.",
+									  text: $keyword) { editing in
+//								isEditing = editing
 							}
 							onCommit: {
 								if !keyword.isEmpty { api.fetch(.search(query: keyword)) }
@@ -38,6 +49,9 @@ struct CoverPhotoControlsView: View {
 							.accentColor(.primary)
 							.frame(alignment: .center)
 							.padding(.horizontal, 20)
+						} else {
+							Text(keyword)
+						}
 						if isEditing {
 							Image(systemName: "xmark.circle.fill")
 								.foregroundColor(.gray)
@@ -48,14 +62,18 @@ struct CoverPhotoControlsView: View {
 						}
 					}
 				} else {
-					Button("Choose Photo") {
-						showPicker.toggle()
+					if isEditing {
+						Button("Choose Photo") {
+							showPicker.toggle()
+						}
+						.foregroundColor(.primary)
+					} else {
+						Text("Edit to choose photo")
 					}
-					.foregroundColor(.primary)
 				}
 			}
 
-			SourceOptionsSelector(selectedOption: $selectedOption)
+			SourceOptionsSelector(selectedOption: $selectedOption, isEditing: $isEditing)
 
 		}
 		.padding(.horizontal)
@@ -71,30 +89,40 @@ struct CoverPhotoControlsView: View {
 struct SourceOptionsSelector: View {
 
 	@Binding var selectedOption: Int
+	@Binding var isEditing: Bool
 
 	var body: some View {
-		HStack(spacing: 16) {
-			Spacer()
+		if isEditing {
+			HStack(spacing: 25) {
 
-			HStack(spacing: 8) {
-				Text("Unsplash")
-				Image(systemName: selectedOption == 0 ? "checkmark.circle.fill" : "circle")
-			}.tag(0)
-			.onTapGesture {
-				selectedOption = 0
+				HStack(spacing: 8) {
+					Text("Previous")
+						.font(.caption)
+					Image(systemName: selectedOption == 0 ? "checkmark.circle.fill" : "circle")
+				}.tag(0)
+				.onTapGesture {
+					selectedOption = 0
+				}
+
+				HStack(spacing: 8) {
+					Text("Unsplash")
+						.font(.caption)
+					Image(systemName: selectedOption == 1 ? "checkmark.circle.fill" : "circle")
+				}.tag(1)
+				.onTapGesture {
+					selectedOption = 1
+				}
+
+				HStack(spacing: 8) {
+					Text("Photo Library")
+						.font(.caption)
+					Image(systemName: selectedOption == 2 ? "checkmark.circle.fill" : "circle")
+				}.tag(2)
+				.onTapGesture {
+					selectedOption = 2
+				}
+
 			}
-
-			Spacer()
-
-			HStack(spacing: 8) {
-				Text("Photo Library")
-				Image(systemName: selectedOption == 1 ? "checkmark.circle.fill" : "circle")
-			}.tag(1)
-			.onTapGesture {
-				selectedOption = 1
-			}
-
-			Spacer()
 		}
 	}
 }
@@ -102,8 +130,8 @@ struct SourceOptionsSelector: View {
 struct CoverPhotoControlsView_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
-			CoverPhotoControlsView(api: UnsplashAPIService(), keyword: .constant(""), selectedOption: .constant(0), showCoverPhoto: .constant(true), image: .constant(UIImage(systemName: "paperplane")!))
-			SourceOptionsSelector(selectedOption: .constant(0))
+			CoverPhotoControlsView(api: UnsplashAPIService(), keyword: .constant(""), selectedOption: .constant(0), showCoverPhoto: .constant(true), image: .constant(UIImage(systemName: "paperplane")!), isEditing: .constant(true))
+			SourceOptionsSelector(selectedOption: .constant(0), isEditing: .constant(true))
 		}
 	}
 }

@@ -10,7 +10,7 @@ import PhotosUI
 
 struct ImagePicker: UIViewControllerRepresentable {
 
-	@Binding var image: UIImage
+	@Binding var image: UIImage?
 	@Binding var showingPicker: Bool
 
 	func makeCoordinator() -> ImagePickerCoordinator {
