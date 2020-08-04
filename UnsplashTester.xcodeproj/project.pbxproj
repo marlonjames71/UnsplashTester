@@ -25,6 +25,10 @@
 		37EA836B24C408C10071E537 /* UnsplashAPIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA836A24C408C10071E537 /* UnsplashAPIKeys.swift */; };
 		37EA836E24C410990071E537 /* UnsplashAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA836D24C410990071E537 /* UnsplashAPI.swift */; };
 		37EA837124C42A5D0071E537 /* UnsplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EA837024C42A5D0071E537 /* UnsplashModels.swift */; };
+		37FF100D24D9F18C00319312 /* CoverPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF100C24D9F18C00319312 /* CoverPhotoView.swift */; };
+		37FF100E24D9F18C00319312 /* CoverPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF100C24D9F18C00319312 /* CoverPhotoView.swift */; };
+		37FF101024DA0E0300319312 /* CreditAndRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF100F24DA0E0300319312 /* CreditAndRefreshView.swift */; };
+		37FF101124DA0E0300319312 /* CreditAndRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FF100F24DA0E0300319312 /* CreditAndRefreshView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,8 @@
 		37EA836A24C408C10071E537 /* UnsplashAPIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIKeys.swift; sourceTree = "<group>"; };
 		37EA836D24C410990071E537 /* UnsplashAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPI.swift; sourceTree = "<group>"; };
 		37EA837024C42A5D0071E537 /* UnsplashModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashModels.swift; sourceTree = "<group>"; };
+		37FF100C24D9F18C00319312 /* CoverPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPhotoView.swift; sourceTree = "<group>"; };
+		37FF100F24DA0E0300319312 /* CreditAndRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditAndRefreshView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,8 @@
 			children = (
 				3753D06024C4F14800119472 /* CoverPhoto.swift */,
 				3753D06324C4F18A00119472 /* CoverPhotoControlsView.swift */,
+				37FF100C24D9F18C00319312 /* CoverPhotoView.swift */,
+				37FF100F24DA0E0300319312 /* CreditAndRefreshView.swift */,
 			);
 			path = CoverPhoto;
 			sourceTree = "<group>";
@@ -380,11 +388,13 @@
 				37EA836E24C410990071E537 /* UnsplashAPI.swift in Sources */,
 				37EA835324C4043B0071E537 /* CoverPhotoMain.swift in Sources */,
 				3753D06124C4F14800119472 /* CoverPhoto.swift in Sources */,
+				37FF101024DA0E0300319312 /* CreditAndRefreshView.swift in Sources */,
 				37EA836B24C408C10071E537 /* UnsplashAPIKeys.swift in Sources */,
 				3753D05D24C4ED3300119472 /* ImagePicker.swift in Sources */,
 				37EA837124C42A5D0071E537 /* UnsplashModels.swift in Sources */,
 				37EA835124C4043B0071E537 /* UnsplashTesterApp.swift in Sources */,
 				3753D06424C4F18A00119472 /* CoverPhotoControlsView.swift in Sources */,
+				37FF100D24D9F18C00319312 /* CoverPhotoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,11 +402,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37FF101124DA0E0300319312 /* CreditAndRefreshView.swift in Sources */,
 				3753D05E24C4ED3300119472 /* ImagePicker.swift in Sources */,
 				37EA835424C4043B0071E537 /* CoverPhotoMain.swift in Sources */,
 				3753D06524C4F18B00119472 /* CoverPhotoControlsView.swift in Sources */,
 				37EA835224C4043B0071E537 /* UnsplashTesterApp.swift in Sources */,
 				3753D06224C4F14800119472 /* CoverPhoto.swift in Sources */,
+				37FF100E24D9F18C00319312 /* CoverPhotoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

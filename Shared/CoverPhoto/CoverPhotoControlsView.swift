@@ -31,18 +31,19 @@ struct CoverPhotoControlsView: View {
 					HStack {
 						Text("Previously Uploaded")
 							.font(.caption)
+						
 						Image(systemName: "checkmark.icloud.fill")
 							.foregroundColor(.green)
 							.font(.caption)
+
 					}
+					.scaleEffect(!isEditing ? CGSize(width: 1.3, height: 1.3) : CGSize(width: 1.0, height: 1.0))
 				}
 				else if selectedOption == 1 {
 					HStack(spacing: 3) {
 						if isEditing {
 							TextField("Outdoors, eg.",
-									  text: $keyword) { editing in
-//								isEditing = editing
-							}
+									  text: $keyword) { editing in }
 							onCommit: {
 								if !keyword.isEmpty { api.fetch(.search(query: keyword)) }
 							}
@@ -50,7 +51,7 @@ struct CoverPhotoControlsView: View {
 							.frame(alignment: .center)
 							.padding(.horizontal, 20)
 						} else {
-							Text(keyword)
+							Text(keyword.isEmpty ? "Edit to Search" : keyword)
 						}
 						if isEditing {
 							Image(systemName: "xmark.circle.fill")
@@ -76,6 +77,7 @@ struct CoverPhotoControlsView: View {
 			SourceOptionsSelector(selectedOption: $selectedOption, isEditing: $isEditing)
 
 		}
+		.animation(.default)
 		.padding(.horizontal)
 		.padding(.top, 10)
 		.padding(.bottom, 10)
