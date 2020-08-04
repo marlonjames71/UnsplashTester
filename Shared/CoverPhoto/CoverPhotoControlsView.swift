@@ -74,7 +74,9 @@ struct CoverPhotoControlsView: View {
 				}
 			}
 
-			SourceOptionsSelector(selectedOption: $selectedOption, isEditing: $isEditing)
+			if isEditing {
+				sourceOptionSelector
+			}
 
 		}
 		.animation(.default)
@@ -88,52 +90,46 @@ struct CoverPhotoControlsView: View {
 }
 
 
-struct SourceOptionsSelector: View {
+extension CoverPhotoControlsView {
+	var sourceOptionSelector: some View {
+		HStack(spacing: 25) {
 
-	@Binding var selectedOption: Int
-	@Binding var isEditing: Bool
+			HStack(spacing: 8) {
+				Text("Previous")
+					.font(.caption)
+				Image(systemName: selectedOption == 0 ? "checkmark.circle.fill" : "circle")
+			}.tag(0)
+			.onTapGesture {
+				selectedOption = 0
+			}
 
-	var body: some View {
-		if isEditing {
-			HStack(spacing: 25) {
+			HStack(spacing: 8) {
+				Text("Unsplash")
+					.font(.caption)
+				Image(systemName: selectedOption == 1 ? "checkmark.circle.fill" : "circle")
+			}.tag(1)
+			.onTapGesture {
+				selectedOption = 1
+			}
 
-				HStack(spacing: 8) {
-					Text("Previous")
-						.font(.caption)
-					Image(systemName: selectedOption == 0 ? "checkmark.circle.fill" : "circle")
-				}.tag(0)
-				.onTapGesture {
-					selectedOption = 0
-				}
-
-				HStack(spacing: 8) {
-					Text("Unsplash")
-						.font(.caption)
-					Image(systemName: selectedOption == 1 ? "checkmark.circle.fill" : "circle")
-				}.tag(1)
-				.onTapGesture {
-					selectedOption = 1
-				}
-
-				HStack(spacing: 8) {
-					Text("Photo Library")
-						.font(.caption)
-					Image(systemName: selectedOption == 2 ? "checkmark.circle.fill" : "circle")
-				}.tag(2)
-				.onTapGesture {
-					selectedOption = 2
-				}
-
+			HStack(spacing: 8) {
+				Text("Photo Library")
+					.font(.caption)
+				Image(systemName: selectedOption == 2 ? "checkmark.circle.fill" : "circle")
+			}.tag(2)
+			.onTapGesture {
+				selectedOption = 2
 			}
 		}
 	}
 }
 
-struct CoverPhotoControlsView_Previews: PreviewProvider {
-	static var previews: some View {
-		Group {
-			CoverPhotoControlsView(api: UnsplashAPIService(), keyword: .constant(""), selectedOption: .constant(0), showCoverPhoto: .constant(true), image: .constant(UIImage(systemName: "paperplane")!), isEditing: .constant(true))
-			SourceOptionsSelector(selectedOption: .constant(0), isEditing: .constant(true))
-		}
-	}
-}
+
+//struct CoverPhotoControlsView_Previews: PreviewProvider {
+//	static var previews: some View {
+//		Group {
+//			CoverPhotoControlsView(api: UnsplashAPIService(), keyword: .constant(""), selectedOption: .constant(0), showCoverPhoto: .constant(true), image: .constant(UIImage(systemName: "paperplane")!), isEditing: .constant(true))
+//			SourceOptionsSelector(selectedOption: .constant(0), isEditing: .constant(true))
+//		}
+//	}
+//}

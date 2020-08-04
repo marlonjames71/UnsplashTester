@@ -30,15 +30,7 @@ struct CoverPhotoMain: View {
 					if showCoverPhoto {
 
 						ZStack(alignment: .bottom) {
-							CoverPhotoView(
-								url: unsplashAPI.result?.urls.regular,
-								api: unsplashAPI,
-								keyword: $keywordText,
-								selectedOption: $selectedPhotoOption,
-								showCoverPhoto: $showCoverPhoto,
-								image: $image,
-								isEditing: $isEditing
-							)
+							coverPhoto
 							.frame(maxWidth: UIScreen.main.bounds.width - imagePadding * 2)
 							.frame(height: UIScreen.main.bounds.height / 3 + 50)
 							.cornerRadius(isEditing ? 10 : 0)
@@ -111,8 +103,10 @@ struct CoverPhotoMain: View {
 			return false
 		}
 	}
+}
 
 
+extension CoverPhotoMain {
 	var creditAndRefreshView: some View {
 		HStack {
 			if selectedPhotoOption == 1 {
@@ -144,6 +138,50 @@ struct CoverPhotoMain: View {
 		}
 	}
 }
+
+
+extension CoverPhotoMain {
+	var coverPhoto: some View {
+		ZStack {
+			switch selectedPhotoOption {
+			case 0:
+				ZStack {
+					if let image = image {
+						Image(uiImage: image)
+							.resizable()
+							.aspectRatio(contentMode: .fill)
+							.background(Color.gray.opacity(0.2))
+					} else {
+						Image(systemName: "photo")
+							.resizable()
+							.font(.title2)
+							.foregroundColor(Color(UIColor.systemGray4))
+					}
+				}
+			case 1:
+				WebImage(url: unsplashAPI.result?.urls.regular)
+					.resizable()
+					.indicator(Indicator.progress)
+					.aspectRatio(contentMode: .fill)
+					.background(Color.gray.opacity(0.2))
+			default:
+				ZStack {
+					if let image = image {
+						Image(uiImage: image)
+							.resizable()
+							.aspectRatio(contentMode: .fill)
+							.background(Color.gray.opacity(0.2))
+					} else {
+						Image(systemName: "photo")
+							.font(.title2)
+							.foregroundColor(Color(UIColor.systemGray4))
+					}
+				}
+			}
+		}
+	}
+}
+
 
 struct MainView_Previews: PreviewProvider {
 	static var previews: some View {
