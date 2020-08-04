@@ -17,7 +17,7 @@ struct CoverPhoto: View {
 	@Binding var image: UIImage?
 
 	@Binding var keywordText: String
-	@Binding var selectedPhotoOption: Int
+	@Binding var selectedPhotoOption: OptionSelector
 
 	private var imagePadding: CGFloat {
 		isEditing ? 10 : 0
@@ -40,10 +40,21 @@ struct CoverPhoto: View {
 	}
 
 
-	enum OptionSelector: Int {
+	enum OptionSelector: Int, CaseIterable {
 		case previous
 		case unsplash
 		case photoLibrary
+
+		var presentationName: String {
+			switch self {
+			case .previous:
+				return "Previous"
+			case .unsplash:
+				return "Unsplash"
+			case .photoLibrary:
+				return "Photo Library"
+			}
+		}
 	}
 }
 
@@ -51,7 +62,7 @@ struct CoverPhoto: View {
 extension CoverPhoto {
 	var creditAndRefreshView: some View {
 		HStack {
-			if selectedPhotoOption == 1 {
+			if selectedPhotoOption == .unsplash {
 				Link("\(unsplashAPI.result?.user.first_name ?? "") \(unsplashAPI.result?.user.last_name ?? "")",
 					 destination: (unsplashAPI.result?.user.links.html ?? URL(string: "https://www.unsplash.com"))!)
 					.font(.caption2)
@@ -64,15 +75,15 @@ extension CoverPhoto {
 			Spacer()
 
 			Button(action: {
-				if selectedPhotoOption == 1 {
+				if selectedPhotoOption == .unsplash {
 					keywordText.isEmpty ? unsplashAPI.fetch(.random) : unsplashAPI.fetch(.search(query: keywordText))
 				} else {
 					image = nil
 				}
 			}, label: {
 				if isEditing {
-					Image(systemName: selectedPhotoOption == 1 ? "arrow.clockwise.circle.fill" : "xmark.circle.fill")
-						.opacity(selectedPhotoOption > 0 ? 1 : 0)
+					Image(systemName: selectedPhotoOption == .unsplash ? "arrow.clockwise.circle.fill" : "xmark.circle.fill")
+						.opacity(selectedPhotoOption.rawValue > 0 ? 1 : 0)
 						.font(.title3)
 						.foregroundColor(.white).opacity(0.7)
 				}
@@ -86,7 +97,7 @@ extension CoverPhoto {
 	var coverPhoto: some View {
 		ZStack {
 			switch selectedPhotoOption {
-			case 0:
+			case .previous:
 				ZStack {
 					if let image = image {
 						Image(uiImage: image)
@@ -100,13 +111,13 @@ extension CoverPhoto {
 							.foregroundColor(Color(UIColor.systemGray4))
 					}
 				}
-			case 1:
+			case .unsplash:
 				WebImage(url: unsplashAPI.result?.urls.regular)
 					.resizable()
 					.indicator(Indicator.progress)
 					.aspectRatio(contentMode: .fill)
 					.background(Color.gray.opacity(0.2))
-			default:
+			case .photoLibrary:
 				ZStack {
 					if let image = image {
 						Image(uiImage: image)

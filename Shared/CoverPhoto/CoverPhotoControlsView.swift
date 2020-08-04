@@ -13,8 +13,7 @@ struct CoverPhotoControlsView: View {
 	var api: UnsplashAPIService
 
 	@Binding var keyword: String
-	@Binding var selectedOption: Int
-	@Binding var showCoverPhoto: Bool
+	@Binding var selectedOption: CoverPhoto.OptionSelector
 	@Binding var image: UIImage?
 
 	@State var showPicker: Bool = false
@@ -27,50 +26,13 @@ struct CoverPhotoControlsView: View {
 					.strokeBorder(Color.gray, style: StrokeStyle(lineWidth: 1), antialiased: true)
 					.frame(height: 45, alignment: .center)
 
-				if selectedOption == 0 {
-					HStack {
-						Text("Previously Uploaded")
-							.font(.caption)
-						
-						Image(systemName: "checkmark.icloud.fill")
-							.foregroundColor(.green)
-							.font(.caption)
-
-					}
-					.scaleEffect(!isEditing ? CGSize(width: 1.3, height: 1.3) : CGSize(width: 1.0, height: 1.0))
-				}
-				else if selectedOption == 1 {
-					HStack(spacing: 3) {
-						if isEditing {
-							TextField("Outdoors, eg.",
-									  text: $keyword) { editing in }
-							onCommit: {
-								if !keyword.isEmpty { api.fetch(.search(query: keyword)) }
-							}
-							.accentColor(.primary)
-							.frame(alignment: .center)
-							.padding(.horizontal, 20)
-						} else {
-							Text(keyword.isEmpty ? "Edit to Search" : keyword)
-						}
-						if isEditing {
-							Image(systemName: "xmark.circle.fill")
-								.foregroundColor(.gray)
-								.padding(.trailing)
-								.onTapGesture {
-									keyword = ""
-								}
-						}
-					}
-				} else {
-					if isEditing {
-						Button("Choose Photo") {
-							showPicker.toggle()
-						}
-						.foregroundColor(.primary)
-					} else {
-						Text("Edit to choose photo")
-					}
+				switch selectedOption {
+				case .previous:
+					imageDashboardPrevious
+				case .unsplash:
+					imageDashboardUnsplash
+				case .photoLibrary:
+					imageDashboardPhotoLibrary
 				}
 			}
 
@@ -87,49 +49,82 @@ struct CoverPhotoControlsView: View {
 			ImagePicker(image: $image, showingPicker: $showPicker)
 		}
 	}
-}
 
 
-extension CoverPhotoControlsView {
-	var sourceOptionSelector: some View {
-		HStack(spacing: 25) {
+	private var imageDashboardPrevious: some View {
+		HStack {
+			Text("Previously Uploaded")
+				.font(.caption)
 
-			HStack(spacing: 8) {
-				Text("Previous")
-					.font(.caption)
-				Image(systemName: selectedOption == 0 ? "checkmark.circle.fill" : "circle")
-			}.tag(0)
-			.onTapGesture {
-				selectedOption = 0
+			Image(systemName: "checkmark.icloud.fill")
+				.foregroundColor(.green)
+				.font(.caption)
+
+		}
+	}
+
+	private var imageDashboardUnsplash: some View {
+		HStack(spacing: 3) {
+			if isEditing {
+				TextField("Outdoors, eg.",
+						  text: $keyword) { editing in }
+				onCommit: {
+					if !keyword.isEmpty { api.fetch(.search(query: keyword)) }
+				}
+				.accentColor(.primary)
+				.frame(alignment: .center)
+				.padding(.horizontal, 20)
+			} else {
+				Text(keyword.isEmpty ? "Edit to Search" : keyword)
 			}
-
-			HStack(spacing: 8) {
-				Text("Unsplash")
-					.font(.caption)
-				Image(systemName: selectedOption == 1 ? "checkmark.circle.fill" : "circle")
-			}.tag(1)
-			.onTapGesture {
-				selectedOption = 1
+			if isEditing {
+				Image(systemName: "xmark.circle.fill")
+					.foregroundColor(.gray)
+					.padding(.trailing)
+					.onTapGesture {
+						keyword = ""
+					}
 			}
+		}
+	}
 
-			HStack(spacing: 8) {
-				Text("Photo Library")
-					.font(.caption)
-				Image(systemName: selectedOption == 2 ? "checkmark.circle.fill" : "circle")
-			}.tag(2)
-			.onTapGesture {
-				selectedOption = 2
+	private var imageDashboardPhotoLibrary: some View {
+		Group {
+			if isEditing {
+				Button("Choose Photo") {
+					showPicker.toggle()
+				}
+				.foregroundColor(.primary)
+			} else {
+				Text("Edit to choose photo")
 			}
 		}
 	}
 }
 
 
-//struct CoverPhotoControlsView_Previews: PreviewProvider {
-//	static var previews: some View {
-//		Group {
-//			CoverPhotoControlsView(api: UnsplashAPIService(), keyword: .constant(""), selectedOption: .constant(0), showCoverPhoto: .constant(true), image: .constant(UIImage(systemName: "paperplane")!), isEditing: .constant(true))
-//			SourceOptionsSelector(selectedOption: .constant(0), isEditing: .constant(true))
-//		}
-//	}
-//}
+extension CoverPhotoControlsView {
+	var sourceOptionSelector: some View {
+		HStack(spacing: 25) {
+			ForEach(CoverPhoto.OptionSelector.allCases, id: \.self) { option in
+				Label(option.presentationName, systemImage: selectedOption == option ? "checkmark.circle.fill" : "circle")
+					.font(.footnote)
+					.onTapGesture {
+						selectedOption = option
+					}
+			}
+		}
+	}
+}
+
+struct CoverPhotoControlsView_Previews: PreviewProvider {
+	static var previews: some View {
+		CoverPhotoControlsView(
+			api: UnsplashAPIService(),
+			keyword: .constant(""),
+			selectedOption: .constant(.unsplash),
+			image: .constant(UIImage()),
+			isEditing: .constant(true)
+		)
+	}
+}
