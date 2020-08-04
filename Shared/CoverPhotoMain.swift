@@ -28,6 +28,7 @@ struct CoverPhotoMain: View {
 			ZStack {
 				VStack(spacing: 20) {
 					if showCoverPhoto {
+
 						ZStack(alignment: .bottom) {
 							CoverPhotoView(
 								url: unsplashAPI.result?.urls.regular,
@@ -43,7 +44,7 @@ struct CoverPhotoMain: View {
 							.cornerRadius(isEditing ? 10 : 0)
 							.clipped()
 
-							CreditAndRefreshView(image: $image, keyword: $keywordText, selectedOption: $selectedPhotoOption, isEditing: $isEditing, api: unsplashAPI)
+							creditAndRefreshView
 								.padding([.horizontal, .bottom], 12)
 						}
 
@@ -97,7 +98,6 @@ struct CoverPhotoMain: View {
 		}
 		.ignoresSafeArea(.all, edges: ignoreTopEdge ? .top : [])
 		.animation(.easeInOut)
-//		.edgesIgnoringSafeArea(.top)
 	}
 
 	var ignoreTopEdge: Bool {
@@ -110,9 +110,38 @@ struct CoverPhotoMain: View {
 		} else {
 			return false
 		}
-//		guard !showCoverPhoto else { return false }
-//		if isEditing { return true }
-//		return false
+	}
+
+
+	var creditAndRefreshView: some View {
+		HStack {
+			if selectedPhotoOption == 1 {
+				Link("\(unsplashAPI.result?.user.first_name ?? "") \(unsplashAPI.result?.user.last_name ?? "")",
+					 destination: (unsplashAPI.result?.user.links.html ?? URL(string: "https://www.unsplash.com"))!)
+					.font(.caption2)
+					.foregroundColor(.white)
+					.padding(.all, 5)
+					.background(Color.black.opacity(0.4))
+					.cornerRadius(6)
+			}
+
+			Spacer()
+
+			Button(action: {
+				if selectedPhotoOption == 1 {
+					keywordText.isEmpty ? unsplashAPI.fetch(.random) : unsplashAPI.fetch(.search(query: keywordText))
+				} else {
+					image = nil
+				}
+			}, label: {
+				if isEditing {
+					Image(systemName: selectedPhotoOption == 1 ? "arrow.clockwise.circle.fill" : "xmark.circle.fill")
+						.opacity(selectedPhotoOption > 0 ? 1 : 0)
+						.font(.title3)
+						.foregroundColor(.white).opacity(0.7)
+				}
+			})
+		}
 	}
 }
 
