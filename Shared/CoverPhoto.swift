@@ -36,7 +36,10 @@ struct CoverPhoto: View {
 		}
 		.padding(.horizontal, imagePadding)
 		.padding(.top, imagePadding)
-		.onAppear { unsplashAPI.fetch(.random) }
+		.onAppear {
+			guard unsplashAPI.result == nil else { return }
+			unsplashAPI.fetch(.random)
+		}
 	}
 
 
