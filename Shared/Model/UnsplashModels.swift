@@ -19,10 +19,15 @@ struct UnsplashURL: Decodable {
 }
 
 struct UnsplashUser: Decodable {
-	let name: String
-	let first_name: String
-	let last_name: String
+	let name: String?
+	let first_name: String?
+	let last_name: String?
 	let links: UnsplashUserPhotoLinks
+
+	var presentationName: String {
+		let fullname = [first_name, last_name].compactMap { $0 }.joined(separator: " ")
+		return fullname.isEmpty ? "Unknown Artist" : fullname
+	}
 }
 
 struct UnsplashUserPhotoLinks: Decodable {

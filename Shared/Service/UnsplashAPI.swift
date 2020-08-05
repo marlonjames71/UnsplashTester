@@ -39,9 +39,18 @@ class UnsplashAPIService: ObservableObject {
 			let url = try urlBuilder(path: path)
 			cancellationToken = URLSession.shared.dataTaskPublisher(for: url)
 				.tryMap { result in
-					return try self.decoder.decode(UnsplashResult.self, from: result.data)
+					let data = result.data
+					if let stringValue = String(data: data, encoding: .utf8) {
+						print(stringValue)
+					}
+					let unsplashResult = try self.decoder.decode(UnsplashResult.self, from: result.data)
+					return unsplashResult
 				}
-				.replaceError(with: nil)
+				.mapError({ error -> Error in
+					print(error)
+					return error
+				})
+				.replaceError(with: result)
 				.receive(on: DispatchQueue.main)
 				.assign(to: \.result, on: self)
 		} catch {

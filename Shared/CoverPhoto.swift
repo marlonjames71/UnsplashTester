@@ -63,7 +63,7 @@ extension CoverPhoto {
 	var creditAndRefreshView: some View {
 		HStack {
 			if selectedPhotoOption == .unsplash {
-				Link("\(unsplashAPI.result?.user.first_name ?? "") \(unsplashAPI.result?.user.last_name ?? "")",
+				Link(unsplashAPI.result?.user.presentationName ?? "",
 					 destination: (unsplashAPI.result?.user.links.html ?? URL(string: "https://www.unsplash.com"))!)
 					.font(.caption2)
 					.foregroundColor(.white)
